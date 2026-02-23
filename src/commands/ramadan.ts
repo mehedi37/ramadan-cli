@@ -468,7 +468,7 @@ export const getRamadanStage = (rozaNumber: number): RamadanStage | null => {
 };
 
 const formatStageHeader = (stage: RamadanStage, lineWidth: number): string => {
-	const label = `${ASHRA_LABELS[stage.ashra - 1]} Ashra: ${stage.name} (${stage.meaning})`;
+	const label = `${ASHRA_LABELS[stage.ashra - 1] ?? ''} Ashra: ${stage.name} (${stage.meaning})`;
 	const paddedLabel = ` ${label} `;
 	const remaining = Math.max(lineWidth - paddedLabel.length - 2, 0);
 	return `  ${pc.dim('─')}${ramadanGreen(paddedLabel)}${pc.dim('─'.repeat(remaining))}`;
@@ -1039,7 +1039,7 @@ const formatStageLine = (rozaNumber: number): string | null => {
 	if (!stage) {
 		return null;
 	}
-	const label = ASHRA_LABELS[stage.ashra - 1];
+	const label = ASHRA_LABELS[stage.ashra - 1] ?? '';
 	return `${label} Ashra — ${stage.name} (${stage.meaning})`;
 };
 
