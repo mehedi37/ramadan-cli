@@ -475,7 +475,7 @@ export const getRamadanStage = (rozaNumber: number): RamadanStage | null => {
 const formatStageHeader = (stage: RamadanStage, lineWidth: number): string => {
 	const label = `${ASHRA_LABELS[stage.ashra - 1] ?? ''} Ashra: ${stage.name} (${stage.meaning})`;
 	const paddedLabel = ` ${label} `;
-	const remaining = Math.max(lineWidth - paddedLabel.length - 2, 0);
+	const remaining = Math.max(lineWidth - paddedLabel.length - 1, 0);
 	return `  ${pc.dim('─')}${ramadanGreen(paddedLabel)}${pc.dim('─'.repeat(remaining))}`;
 };
 
