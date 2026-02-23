@@ -458,13 +458,18 @@ export const getRamadanStage = (rozaNumber: number): RamadanStage | null => {
 	if (rozaNumber < 1 || rozaNumber > 30) {
 		return null;
 	}
-	if (rozaNumber <= 10) {
-		return RAMADAN_STAGES[0] ?? null;
+
+	let currentStage: RamadanStage | null = null;
+
+	for (const stage of RAMADAN_STAGES) {
+		if (stage.startRoza <= rozaNumber) {
+			currentStage = stage;
+		} else {
+			break;
+		}
 	}
-	if (rozaNumber <= 20) {
-		return RAMADAN_STAGES[1] ?? null;
-	}
-	return RAMADAN_STAGES[2] ?? null;
+
+	return currentStage;
 };
 
 const formatStageHeader = (stage: RamadanStage, lineWidth: number): string => {
